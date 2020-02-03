@@ -1,12 +1,12 @@
 import React from 'react';
 import { List, ListItem, Text } from 'native-base';
 import { ScrollView } from 'react-native';
-import list from '../data/categories';
+import categories from '../data/categories';
 
-class Categorieslist extends React.Component {
+class CategoriesList extends React.Component {
     constructor(props) {
         super(props);
-        this.state.categories = list;
+        this.state.categories = categories;
     }
 
     state = {
@@ -14,14 +14,22 @@ class Categorieslist extends React.Component {
     };
 
     render() {
+        const { navigation: { navigate } } = this.props;
+
         return (
             <ScrollView>
                 <List>
                     {
-                        this.state.categories.map((item) => {
+                        categories.map((item) => {
+
+                            const { collection, alias, name } = item;
+
                             return (
-                                <ListItem key={item.alias}>
-                                    <Text>{item.name}</Text>
+                                <ListItem
+                                    key={alias}
+                                    onPress={() => navigate('ImagesGrid', { collection, title: name })}
+                                >
+                                    <Text>{name}</Text>
                                 </ListItem>
                             )
                         })
@@ -32,4 +40,4 @@ class Categorieslist extends React.Component {
     }
 }
 
-export default Categorieslist;
+export default CategoriesList;
