@@ -1,8 +1,8 @@
 import React from 'react';
-import CategoriesList from './screens/CategoriesList';
+import Navigator from './navigation';
 
 export default function App() {
   return (
-      <CategoriesList />
+      <Navigator/>
   );
 }
