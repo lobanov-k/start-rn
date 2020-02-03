@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, CardItem, Image} from 'native-base';
-import {View, ScrollView, StyleSheet, Dimensions} from 'react-native';
+import {Card, CardItem} from 'native-base';
+import {View, ScrollView, StyleSheet, Dimensions, Image} from 'react-native';
 
 /**
  * Получаем объект экрана через API RN
@@ -9,9 +9,9 @@ import {View, ScrollView, StyleSheet, Dimensions} from 'react-native';
 const window = Dimensions.get('window');
 const imagesWidth = window.width - 20;
 
-export default class Gallery extends React.Component {
+export default class ImageGrid extends React.Component {
     render() {
-        const {list} = this.props;
+        const { list } = this.props;
 
         return (
             <ScrollView>
@@ -19,13 +19,10 @@ export default class Gallery extends React.Component {
                     const imageRatio = imagesWidth/item.width;
 
                     return(
-                        <View key={item.name} style={styles.cardWrapper}>
+                        <View key={item.url} style={styles.cardWrapper}>
                             <Card style={styles.card}>
-                                <CardItem
-                                    style={styles.cardItem}
-                                    button={true}
-                                    onPress={}>
-                                    <Image source={{uri: item.src}}
+                                <CardItem style={styles.cardItem}>
+                                    <Image source={{uri: item.url}}
                                         style={{
                                             ...styles.image,
                                             height: item.height * imageRatio
